@@ -1,1 +1,0 @@
-没有使用  binary_image = binary_dilation(binary_image, iterations=dilation_iterations)
