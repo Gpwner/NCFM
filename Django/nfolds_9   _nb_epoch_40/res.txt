@@ -1,0 +1,73 @@
+    nfolds=9
+    batch_size = 32
+    nb_epoch = 40
+    random_state = 51
+
+def create_model():
+    model = Sequential()
+    model.add(ZeroPadding2D((1, 1), input_shape=(3, 32, 32), dim_ordering='th'))
+    model.add(Convolution2D(4, 3, 3, activation='relu', dim_ordering='th'))
+    model.add(ZeroPadding2D((1, 1), dim_ordering='th'))
+    model.add(Convolution2D(4, 3, 3, activation='relu', dim_ordering='th'))
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2), dim_ordering='th'))
+
+    model.add(Dropout(0.2))
+    
+
+    model.add(Flatten())
+    model.add(Dense(32, activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(32, activation='relu'))
+    model.add(Dropout(2.5)) #changed this from 0.5
+    model.add(Dense(8, activation='softmax'))
+
+
+=====================================================================================
+
+13632 train samples
+Start KFold number 1 from 9
+Split train:  12117 12117
+Split valid:  1515 1515
+Score log_loss:  0.537487356773
+
+Start KFold number 2 from 9
+Split train:  12117 12117
+Split valid:  1515 1515
+Score log_loss:  0.50546662557
+
+Start KFold number 3 from 9
+Split train:  12117 12117
+Split valid:  1515 1515
+Score log_loss:  0.503193028169
+
+Start KFold number 4 from 9
+Split train:  12117 12117
+Split valid:  1515 1515
+Score log_loss:  0.485411545057
+
+Start KFold number 5 from 9
+Split train:  12117 12117
+Split valid:  1515 1515
+Score log_loss:  0.447823866644
+
+Start KFold number 6 from 9
+Split train:  12117 12117
+Split valid:  1515 1515
+Score log_loss:  0.516524901962
+
+Start KFold number 7 from 9
+Split train:  12118 12118
+Split valid:  1514 1514
+Score log_loss:  0.505010457344
+
+Start KFold number 8 from 9
+Split train:  12118 12118
+Split valid:  1514 1514
+Score log_loss:  0.537101724417
+
+Start KFold number 9 from 9
+Split train:  12118 12118
+Split valid:  1514 1514
+Score log_loss:  0.561537530216
+
+Log_loss train independent avg:  0.511056723889
