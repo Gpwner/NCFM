@@ -1,0 +1,155 @@
+    nfolds=20
+    batch_size = 32
+    nb_epoch = 40
+    random_state = 51
+
+def create_model():
+    model = Sequential()
+    model.add(ZeroPadding2D((1, 1), input_shape=(3, 32, 32), dim_ordering='th'))
+    model.add(Convolution2D(4, 3, 3, activation='relu', dim_ordering='th'))
+    model.add(ZeroPadding2D((1, 1), dim_ordering='th'))
+    model.add(Convolution2D(4, 3, 3, activation='relu', dim_ordering='th'))
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2), dim_ordering='th'))
+    model.add(Dropout(0.2))
+    
+
+    model.add(Flatten())
+    model.add(Dense(32, activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(32, activation='relu'))
+    model.add(Dropout(2.5)) #changed this from 0.5
+    model.add(Dense(8, activation='softmax'))
+
+    sgd = SGD(lr=1e-2, decay=1e-6, momentum=0.9, nesterov=True)
+    #model.compile(optimizer=sgd, loss='categorical_crossentropy',class_mode="categorical")
+    model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+    return model
+===================================================================================================
+13632 train samples
+Start KFold number 1 from 20
+Split train:  12950 12950
+Split valid:  682 682
+Score log_loss:  0.466676341159
+
+Start KFold number 2 from 20
+Split train:  12950 12950
+Split valid:  682 682
+Score log_loss:  0.444404848058
+
+Start KFold number 3 from 20
+Split train:  12950 12950
+Split valid:  682 682
+Score log_loss:  0.511347315285
+
+Start KFold number 4 from 20
+Split train:  12950 12950
+Split valid:  682 682
+Score log_loss:  0.538885324641
+
+Start KFold number 5 from 20
+Split train:  12950 12950
+Split valid:  682 682
+Score log_loss:  0.475941460551
+
+Start KFold number 6 from 20
+Split train:  12950 12950
+Split valid:  682 682
+Score log_loss:  0.567559250573
+
+Start KFold number 7 from 20
+Split train:  12950 12950
+Split valid:  682 682
+Score log_loss:  0.554854240419
+
+Start KFold number 8 from 20
+Split train:  12950 12950
+Split valid:  682 682
+Score log_loss:  0.547703572482
+
+Start KFold number 9 from 20
+Split train:  12950 12950
+Split valid:  682 682
+Score log_loss:  0.544005163824
+
+Start KFold number 10 from 20
+Split train:  12950 12950
+Split valid:  682 682
+Score log_loss:  0.529728088976
+
+Start KFold number 11 from 20
+Split train:  12950 12950
+Split valid:  682 682
+Score log_loss:  0.564599159538
+
+Start KFold number 12 from 20
+Split train:  12950 12950
+Split valid:  682 682
+Score log_loss:  0.443241479233
+
+Start KFold number 13 from 20
+Split train:  12951 12951
+Split valid:  681 681
+Score log_loss:  0.60388425191
+
+Start KFold number 14 from 20
+Split train:  12951 12951
+Split valid:  681 681
+Score log_loss:  0.526043185517
+
+Start KFold number 15 from 20
+Split train:  12951 12951
+Split valid:  681 681
+Score log_loss:  0.484392415698
+
+Start KFold number 16 from 20
+Split train:  12951 12951
+Split valid:  681 681
+Score log_loss:  0.529066442208
+
+Start KFold number 17 from 20
+Split train:  12951 12951
+Split valid:  681 681
+Score log_loss:  0.516335703569
+
+Start KFold number 18 from 20
+Split train:  12951 12951
+Split valid:  681 681
+Score log_loss:  0.511137879396
+
+Start KFold number 19 from 20
+Split train:  12951 12951
+Split valid:  681 681
+Score log_loss:  0.554950593557
+
+Start KFold number 20 from 20
+Split train:  12951 12951
+Split valid:  681 681
+Score log_loss:  0.513071907838
+
+Log_loss train independent avg:  0.52138646123
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

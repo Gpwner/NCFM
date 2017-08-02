@@ -1,0 +1,77 @@
+def create_model():
+    model = Sequential()
+    model.add(ZeroPadding2D((1, 1), input_shape=(3, 32, 32), dim_ordering='th'))
+    model.add(Convolution2D(4, 3, 3, activation='relu', dim_ordering='th'))
+    model.add(ZeroPadding2D((1, 1), dim_ordering='th'))
+    model.add(Convolution2D(4, 3, 3, activation='relu', dim_ordering='th'))
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2), dim_ordering='th'))
+
+    model.add(ZeroPadding2D((1, 1), dim_ordering='th'))
+    model.add(Convolution2D(8, 3, 3, activation='relu', dim_ordering='th'))
+    model.add(ZeroPadding2D((1, 1), dim_ordering='th'))
+    model.add(Convolution2D(8, 3, 3, activation='relu', dim_ordering='th'))
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2), dim_ordering='th'))
+    
+    model.add(Dropout(0.2))
+    
+
+    model.add(Flatten())
+    model.add(Dense(32, activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(32, activation='relu'))
+    model.add(Dropout(2.5)) #changed this from 0.5
+    model.add(Dense(8, activation='softmax'))
+
+    sgd = SGD(lr=1e-2, decay=1e-6, momentum=0.9, nesterov=True)
+    #model.compile(optimizer=sgd, loss='categorical_crossentropy',class_mode="categorical")
+    model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+    return model
+
+=====================================================================================================
+
+13632 train samples
+Start KFold number 1 from 9
+Split train:  12117 12117
+Split valid:  1515 1515
+Score log_loss:  0.812375929501
+
+Start KFold number 2 from 9
+Split train:  12117 12117
+Split valid:  1515 1515
+Score log_loss:  0.814899185224
+
+Start KFold number 3 from 9
+Split train:  12117 12117
+Split valid:  1515 1515
+Score log_loss:  0.826048888823
+
+Start KFold number 4 from 9
+Split train:  12117 12117
+Split valid:  1515 1515
+Score log_loss:  0.912774818312
+
+Start KFold number 5 from 9
+Split train:  12117 12117
+Split valid:  1515 1515
+Score log_loss:  0.77100477067
+
+Start KFold number 6 from 9
+Split train:  12117 12117
+Split valid:  1515 1515
+Score log_loss:  0.757442930402
+
+Start KFold number 7 from 9
+Split train:  12118 12118
+Split valid:  1514 1514
+Score log_loss:  0.761502277746
+
+Start KFold number 8 from 9
+Split train:  12118 12118
+Split valid:  1514 1514
+Score log_loss:  0.710213744107
+
+Start KFold number 9 from 9
+Split train:  12118 12118
+Split valid:  1514 1514
+Score log_loss:  0.826420199464
+Log_loss train independent avg:  0.799194265061
